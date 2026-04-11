@@ -1,0 +1,16 @@
+{
+  "name": "baoyan-opencode-agent",
+  "version": "0.1.0",
+  "private": true,
+  "type": "module",
+  "description": "OpenCode multi-agent scaffold for Chinese STEM undergraduate baoyan advising",
+  "scripts": {
+    "check:data": "node -e \"JSON.parse(require('fs').readFileSync('data/student_profile.json','utf8')); JSON.parse(require('fs').readFileSync('data/evidence_store.json','utf8')); JSON.parse(require('fs').readFileSync('data/user_memory.json','utf8')); console.log('data ok')\"",
+    "check:memory": "node --experimental-strip-types scripts/check_memory_ingest.ts",
+    "check:evidence": "node --experimental-strip-types scripts/check_evidence_audit.ts",
+    "check:stack": "node --experimental-strip-types scripts/check_recommend_stack.ts"
+  },
+  "dependencies": {
+    "zod": "^3.25.0"
+  }
+}

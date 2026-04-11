@@ -1,0 +1,87 @@
+{
+  "$schema": "https://opencode.ai/config.json",
+  "model": "openai/gpt-4o",
+  "small_model": "openai/gpt-4o-mini",
+  "permission": {
+    "question": "allow",
+    "websearch": "allow",
+    "webfetch": "allow",
+    "read": "allow",
+    "grep": "allow",
+    "glob": "allow",
+    "list": "allow",
+    "skill": "allow",
+    "edit": "ask",
+    "write": "ask",
+    "bash": "ask"
+  },
+  "agent": {
+    "advisor": {
+      "description": "全流程保研陪跑顾问，负责统筹画像、择校、导师匹配、文书与时间线",
+      "mode": "primary",
+      "model": "openai/gpt-4o",
+      "temperature": 0.2,
+      "permission": {
+        "task": {
+          "*": "deny",
+          "profile-intake": "allow",
+          "school-researcher": "allow",
+          "mentor-analyst": "allow",
+          "writing-coach": "allow",
+          "stack-auditor": "allow"
+        }
+      }
+    },
+    "profile-intake": {
+      "description": "采集学生画像并输出初始背景评估",
+      "mode": "subagent",
+      "model": "openai/gpt-4o-mini",
+      "temperature": 0.1
+    },
+    "school-researcher": {
+      "description": "检索学校、项目、夏令营和预推免通知，提取结构化条件",
+      "mode": "subagent",
+      "model": "openai/gpt-4o-mini",
+      "temperature": 0.1
+    },
+    "mentor-analyst": {
+      "description": "分析导师、实验室和论文方向，输出匹配度和风险提示",
+      "mode": "subagent",
+      "model": "openai/gpt-4o",
+      "temperature": 0.1
+    },
+    "writing-coach": {
+      "description": "负责套磁信、简历、自述和面试准备，强调个性化",
+      "mode": "subagent",
+      "model": "openai/gpt-4o",
+      "temperature": 0.3
+    },
+    "stack-auditor": {
+      "description": "排查当前 OpenCode 生态栈并推荐最适合保研项目的插件、MCP 和 GitHub 组件",
+      "mode": "subagent",
+      "model": "openai/gpt-4o-mini",
+      "temperature": 0.1
+    }
+  },
+  "mcp": {
+    "playwright": {
+      "type": "local",
+      "command": [
+        "npx",
+        "-y",
+        "@playwright/mcp@latest"
+      ],
+      "enabled": true
+    },
+    "markitdown": {
+      "type": "local",
+      "command": [
+        "uvx",
+        "--from",
+        "markitdown-mcp",
+        "markitdown-mcp"
+      ],
+      "enabled": true
+    }
+  }
+}

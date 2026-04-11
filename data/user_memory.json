@@ -1,0 +1,23 @@
+{
+  "_schema": {
+    "description": "对话级本地记忆。memory_text 为给 agent 直接复用的压缩摘要，默认限制 1500 字符；每次用户提问后增量更新，超限时按优先级提炼。recent_entities 用于多轮指代解析，如"这个老师""那个学校"。",
+    "memory_limit_chars": 1500
+  },
+  "memory_limit_chars": 1500,
+  "last_updated": "",
+  "turn_count": 0,
+  "notes": [],
+  "recent_questions": [],
+  "open_questions": [],
+  "recent_entities": {
+    "last_target_school": "",
+    "last_target_mentor": "",
+    "last_direction": "",
+    "last_city": "",
+    "recent_target_schools": [],
+    "recent_target_mentors": [],
+    "recent_directions": [],
+    "recent_cities": []
+  },
+  "memory_text": ""
+}

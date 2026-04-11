@@ -1,0 +1,221 @@
+{
+  "registry_version": "1.0",
+  "last_updated": "2026-04-11",
+  "review_cadence_days": 90,
+  "curation_policy": {
+    "principle": "Prefer OpenCode built-ins first; recommend third-party components only when they add clear value.",
+    "accepted_integration_paths": [
+      "plugin",
+      "mcp",
+      "custom_tool",
+      "github_agent"
+    ],
+    "review_requirements": [
+      "clear installation path",
+      "limited permissions",
+      "maintenance signal",
+      "project fit"
+    ]
+  },
+  "components": [
+    {
+      "id": "opencode-github-agent",
+      "name": "OpenCode GitHub agent",
+      "type": "github_agent",
+      "source": "official",
+      "docs_url": "https://opencode.ai/docs/github/",
+      "app_url": "https://github.com/apps/opencode-agent",
+      "install_hint": "opencode github install",
+      "install_notes": "The installer walks you through GitHub App setup, workflow creation, and secrets.",
+      "auto_apply": false,
+      "fit_for_baoyan_project": "high",
+      "when_to_use": "Need issue/PR-driven maintenance and repository automation",
+      "benefit_score": 4,
+      "complexity_cost": 3,
+      "last_verified": "2026-04-11",
+      "next_review_by": "2026-07-11",
+      "notes": "Runs inside GitHub Actions runners; intended for repo operations."
+    },
+    {
+      "id": "github-mcp-server",
+      "name": "GitHub MCP server",
+      "type": "mcp",
+      "source": "official",
+      "repo_url": "https://github.com/github/github-mcp-server",
+      "remote_url": "https://api.githubcopilot.com/mcp/",
+      "local_image": "ghcr.io/github/github-mcp-server",
+      "install_hint": "Add as MCP server (remote or local) and limit toolsets.",
+      "mcp_config": {
+        "github": {
+          "type": "remote",
+          "url": "https://api.githubcopilot.com/mcp/",
+          "enabled": true,
+          "headers": {
+            "Authorization": "Bearer {env:GITHUB_MCP_PAT}"
+          }
+        }
+      },
+      "auto_apply": true,
+      "fit_for_baoyan_project": "high",
+      "when_to_use": "Need repo, issue, PR, workflow context inside the agent",
+      "benefit_score": 3,
+      "complexity_cost": 2,
+      "last_verified": "2026-04-11",
+      "next_review_by": "2026-07-11",
+      "notes": "Supports toolsets for least-privilege; PAT or OAuth required for remote access."
+    },
+    {
+      "id": "playwright-mcp",
+      "name": "Playwright MCP",
+      "type": "mcp",
+      "source": "official",
+      "repo_url": "https://github.com/microsoft/playwright-mcp",
+      "npm_package": "@playwright/mcp",
+      "install_hint": "Add as MCP server via npx.",
+      "mcp_config": {
+        "playwright": {
+          "type": "local",
+          "command": [
+            "npx",
+            "-y",
+            "@playwright/mcp@latest"
+          ],
+          "enabled": true
+        }
+      },
+      "auto_apply": true,
+      "fit_for_baoyan_project": "high",
+      "when_to_use": "Need dynamic website access for JS-heavy university or lab pages",
+      "benefit_score": 4,
+      "complexity_cost": 2,
+      "last_verified": "2026-04-11",
+      "next_review_by": "2026-07-11",
+      "notes": "Useful when built-in websearch/webfetch is insufficient for JS-rendered pages."
+    },
+    {
+      "id": "markitdown-mcp",
+      "name": "MarkItDown MCP",
+      "type": "mcp",
+      "source": "official",
+      "repo_url": "https://github.com/microsoft/markitdown/tree/main/packages/markitdown-mcp",
+      "install_hint": "Prefer `uvx --from markitdown-mcp markitdown-mcp` as the local MCP command; if uv is unavailable, install in an isolated Python environment with `pip install markitdown-mcp` or use Docker.",
+      "mcp_config": {
+        "markitdown": {
+          "type": "local",
+          "command": [
+            "uvx",
+            "--from",
+            "markitdown-mcp",
+            "markitdown-mcp"
+          ],
+          "enabled": true
+        }
+      },
+      "auto_apply": true,
+      "fit_for_baoyan_project": "high",
+      "when_to_use": "Need to convert official PDF / Word / Excel notices into Markdown before evidence extraction",
+      "benefit_score": 4,
+      "complexity_cost": 2,
+      "last_verified": "2026-04-11",
+      "next_review_by": "2026-07-11",
+      "notes": "Best for admissions brochures and notice attachments. Verified locally in this project via uvx. Upstream warns it is intended for local trusted agents and should stay on localhost when exposed over HTTP."
+    },
+    {
+      "id": "crawl4ai",
+      "name": "Crawl4AI",
+      "type": "custom_tool",
+      "source": "community",
+      "repo_url": "https://github.com/unclecode/crawl4ai",
+      "install_hint": "Deploy via `pip install crawl4ai && crawl4ai-setup` or Docker, then wrap the crawl API / Python entrypoint as a local custom tool.",
+      "auto_apply": false,
+      "fit_for_baoyan_project": "high",
+      "when_to_use": "Need site-wide crawling, fit-markdown filtering, JS execution, or two-phase discovery on school / lab sites",
+      "benefit_score": 4,
+      "complexity_cost": 3,
+      "last_verified": "2026-04-11",
+      "next_review_by": "2026-07-11",
+      "notes": "Powerful for multi-page collection and structured extraction, but heavier than Playwright MCP and better suited to phase-2 rollout."
+    },
+    {
+      "id": "firecrawl",
+      "name": "Firecrawl",
+      "type": "mcp",
+      "source": "community",
+      "repo_url": "https://github.com/firecrawl/firecrawl",
+      "install_hint": "Use Firecrawl MCP / SDK only if you accept an external API key or have a self-host plan.",
+      "auto_apply": false,
+      "fit_for_baoyan_project": "medium",
+      "when_to_use": "Need hosted site map / scrape / agent workflows and accept cloud dependency for faster rollout",
+      "benefit_score": 3,
+      "complexity_cost": 4,
+      "last_verified": "2026-04-11",
+      "next_review_by": "2026-07-11",
+      "notes": "Strong hosted crawl/search capabilities, but introduces API-key, cost, and cloud-dependency tradeoffs."
+    },
+    {
+      "id": "opencode-openai-codex-auth",
+      "name": "opencode-openai-codex-auth",
+      "type": "plugin",
+      "source": "community",
+      "repo_url": "https://github.com/numman-ali/opencode-openai-codex-auth",
+      "install_hint": "npx -y opencode-openai-codex-auth@latest",
+      "auto_apply": false,
+      "fit_for_baoyan_project": "medium",
+      "when_to_use": "Want to reduce cost by using a personal ChatGPT Plus/Pro subscription",
+      "benefit_score": 2,
+      "complexity_cost": 2,
+      "last_verified": "2026-04-11",
+      "next_review_by": "2026-07-11",
+      "notes": "Personal use only; not for production or multi-user deployments."
+    },
+    {
+      "id": "opencode-daytona",
+      "name": "@daytona/opencode",
+      "type": "plugin",
+      "source": "official_ecosystem",
+      "repo_url": "https://github.com/daytonaio/daytona/tree/main/libs/opencode-plugin",
+      "install_hint": "Add \"@daytona/opencode\" to the OpenCode plugin array.",
+      "plugin_name": "@daytona/opencode",
+      "auto_apply": true,
+      "fit_for_baoyan_project": "medium",
+      "when_to_use": "Need isolated remote sandboxes or shared dev environments",
+      "benefit_score": 2,
+      "complexity_cost": 4,
+      "last_verified": "2026-04-11",
+      "next_review_by": "2026-07-11",
+      "notes": "Requires a Daytona account and API key. High complexity; defer to phase 2."
+    },
+    {
+      "id": "custom-private-knowledge-mcp",
+      "name": "Private knowledge MCP (user-provided)",
+      "type": "mcp",
+      "source": "user_provided",
+      "install_hint": "Add your own MCP server config after validating auth, permissions, and maintenance status.",
+      "auto_apply": false,
+      "fit_for_baoyan_project": "medium",
+      "when_to_use": "You already operate a private knowledge base and want retrieval in the agent",
+      "benefit_score": 3,
+      "complexity_cost": 3,
+      "last_verified": "2026-04-11",
+      "next_review_by": "2026-07-11",
+      "notes": "Not curated; only include after a manual security and maintenance review."
+    },
+    {
+      "id": "oh-my-opencode",
+      "name": "oh-my-openagent (legacy: oh-my-opencode)",
+      "type": "plugin_bundle",
+      "source": "community",
+      "repo_url": "https://github.com/code-yeongyu/oh-my-openagent",
+      "install_hint": "Install via the project's plugin instructions; remove by deleting \"oh-my-openagent\" or legacy \"oh-my-opencode\" from config.",
+      "plugin_name": "oh-my-openagent",
+      "auto_apply": false,
+      "fit_for_baoyan_project": "medium",
+      "when_to_use": "Want a large agent bundle and accept higher complexity",
+      "benefit_score": 2,
+      "complexity_cost": 4,
+      "last_verified": "2026-04-11",
+      "next_review_by": "2026-07-11",
+      "notes": "Not recommended as default for a clean first deployment."
+    }
+  ]
+}

@@ -1,0 +1,96 @@
+{
+  "_note": "这是用于快速验证和端到端测试的示例画像，所有数据均为虚构。复制到 data/student_profile.json 后可直接运行 /full-run 验证系统是否正常工作。",
+  "basic": {
+    "name": "张晓明",
+    "school": "中国海洋大学",
+    "major": "计算机科学与技术",
+    "grade": "junior_fall"
+  },
+  "academic": {
+    "gpa": "3.85/4.0",
+    "rank": "3/120",
+    "rank_percent": "2.5%",
+    "english": {
+      "cet4": "615",
+      "cet6": "572",
+      "toefl": "",
+      "ielts": ""
+    }
+  },
+  "experience": {
+    "research": [
+      {
+        "title": "基于图神经网络的蛋白质功能预测",
+        "lab": "海洋大学智能计算实验室",
+        "duration": "2025-03 至今",
+        "role": "主要成员",
+        "outcome": "在导师指导下完成数据预处理模块，参与论文撰写（在投）"
+      }
+    ],
+    "projects": [
+      {
+        "title": "校园二手物品交易平台",
+        "stack": "React + Node.js + MySQL",
+        "duration": "2024-09 ~ 2025-01",
+        "outcome": "上线运营，日活用户约 200"
+      }
+    ],
+    "competitions": [
+      {
+        "name": "全国大学生数学建模竞赛",
+        "award": "省级一等奖",
+        "year": "2024"
+      }
+    ],
+    "publications": [],
+    "readings": [
+      {
+        "title": "Graph Neural Networks for Protein Function Prediction",
+        "year": "2024",
+        "source": "导师组组会论文精读",
+        "takeaway": "重点关注图表示学习在蛋白质结构与功能预测中的迁移方式"
+      }
+    ],
+    "awards": [
+      "国家奖学金（2024）",
+      "校级优秀学生（2023、2024）"
+    ]
+  },
+  "preferences": {
+    "cities": ["北京", "上海", "杭州"],
+    "target_directions": ["图神经网络", "自然语言处理", "计算机视觉"],
+    "degree_type": ["学术硕士"],
+    "career_goal": "工业界研究院（倾向于 NLP/CV 方向）",
+    "family_constraints": ["不希望去西部地区"],
+    "lab_style": {
+      "pressure_tolerance": "medium",
+      "publication_focus": true,
+      "prefers_independent_work": false
+    }
+  },
+  "application_state": {
+    "target_schools": [
+      {"name": "北京大学计算机系", "tier": "冲", "status": "待套磁"},
+      {"name": "浙江大学计算机学院", "tier": "稳", "status": "已套磁，待回复"},
+      {"name": "中国科学院大学计算所", "tier": "稳", "status": "未开始"}
+    ],
+    "target_mentors": [
+      {"name": "某教授", "school": "浙大", "direction": "图神经网络", "status": "已套磁"}
+    ],
+    "materials_ready": {
+      "cv": true,
+      "ps": false,
+      "cold_email_ready": true,
+      "transcript": true
+    }
+  },
+  "application_round": 1,
+  "current_stage": "summer_camp",
+  "risk_flags": [
+    "CET-6 成绩偏低（572），部分要求 580+ 的项目需注意"
+  ],
+  "missing_fields": [
+    "尚未明确直博意愿",
+    "尚未确认是否接受专硕"
+  ]
+}

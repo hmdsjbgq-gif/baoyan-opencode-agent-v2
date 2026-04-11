@@ -1,0 +1,23 @@
+{
+  "_schema": {
+    "description": "证据库。每条 claim 代表一个可核验的事实断言。superseded_by 非空的条目为已被更正的旧记录，推理时应忽略；当前有效 claim 不应携带 superseded_by。",
+    "claim_fields": {
+      "id": "string — 唯一标识符，如 'school_thu_deadline_2026'",
+      "entity": "string — 证据所属实体，如 '清华大学计算机系'",
+      "claim": "string — 具体断言内容",
+      "source_url": "string — 信息来源 URL",
+      "source_type": "'official' | 'academic' | 'public_discussion'",
+      "source_authority": "'university_official' | 'department_official' | 'graduate_admissions_official' | 'faculty_official' | 'lab_official' | 'paper' | 'academic_profile' | 'forum_or_social' | 'other' — 来源层级；用于区分学院/研究生院通知与导师主页、论坛等不同权威度",
+      "topic_type": "'deadline' | 'eligibility' | 'materials_requirement' | 'english_requirement' | 'contact_info' | 'mentor_profile' | 'mentor_research' | 'mentor_admissions_signal' | 'lab_direction' | 'policy' | 'other'",
+      "applicable_cycle": "string? — 适用轮次/年份，如 '2026夏令营'、'2026预推免'",
+      "published_at": "string? — 来源原始发布时间，ISO 8601 时间戳",
+      "verified": "boolean — 是否已从来源直接核验",
+      "captured_at": "string — ISO 8601 时间戳",
+      "review_after": "string? — 下次建议复核时间，ISO 8601 时间戳；缺省时由工具按 topic_type 自动推断",
+      "reliability_tier": "'high' | 'medium' | 'low' — 证据可信等级，默认由工具根据 source_type/verified/topic_type 推断",
+      "superseded_by": "string? — 若非空，指向更新条目的 id，本条视为过时；当前有效记录应省略此字段",
+      "notes": "string? — 可选备注"
+    }
+  },
+  "claims": []
+}

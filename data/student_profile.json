@@ -1,0 +1,98 @@
+{
+  "_schema": {
+    "description": "学生画像模板。空字符串、空数组和 false 表示待补充；仅在已确认暂时无法判断时使用 unknown。",
+    "basic_fields": {
+      "grade": {
+        "description": "当前所处本科阶段，建议使用固定枚举值，避免自由文本影响后续时间线与策略判断。",
+        "allowed_values": [
+          "sophomore_summer",
+          "junior_fall",
+          "junior_spring",
+          "junior_summer",
+          "senior_fall",
+          "senior_spring",
+          "graduated",
+          "other"
+        ]
+      }
+    },
+    "stage_fields": {
+      "current_stage": {
+        "description": "当前保研推进阶段。未知时可留空；一旦填写，建议使用固定枚举，便于时间线工具直接复用。",
+        "allowed_values": [
+          "early_prep",
+          "summer_camp",
+          "pre_recommendation",
+          "offer_choice"
+        ]
+      },
+      "application_round": {
+        "description": "当前是第几轮画像/择校/导师迭代，默认从 1 开始。"
+      }
+    }
+  },
+  "basic": {
+    "name": "",
+    "school": "",
+    "major": "",
+    "grade": ""
+  },
+  "academic": {
+    "gpa": "",
+    "rank": "",
+    "rank_percent": "",
+    "english": {
+      "cet4": "",
+      "cet6": "",
+      "toefl": "",
+      "ielts": ""
+    }
+  },
+  "experience": {
+    "research": [],
+    "projects": [],
+    "competitions": [],
+    "publications": [],
+    "readings": [],
+    "awards": []
+  },
+  "preferences": {
+    "cities": [],
+    "target_directions": [],
+    "degree_type": [],
+    "career_goal": "",
+    "family_constraints": [],
+    "lab_style": {
+      "pressure_tolerance": "",
+      "publication_focus": null,
+      "prefers_independent_work": null
+    }
+  },
+  "application_state": {
+    "target_schools": [],
+    "target_mentors": [],
+    "materials_ready": {
+      "cv": false,
+      "ps": false,
+      "cold_email_ready": false,
+      "transcript": false
+    }
+  },
+  "application_round": 1,
+  "current_stage": "",
+  "risk_flags": [],
+  "missing_fields": [
+    "本科院校",
+    "专业",
+    "当前年级",
+    "GPA",
+    "专业排名",
+    "排名百分比",
+    "英语成绩",
+    "科研/项目/竞赛经历",
+    "学位偏好",
+    "城市偏好",
+    "职业目标",
+    "当前申请阶段"
+  ]
+}
